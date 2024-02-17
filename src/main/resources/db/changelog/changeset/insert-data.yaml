@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: init-data
+      author: caramba
+      changes:
+        - insert:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  value: "5f3e3087-66a3-4c41-98a3-defb68afb617"
+              - column:
+                  name: balance
+                  value: "8504521"
+        - insert:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  value: "426bd995-e2d0-4a6f-9666-e664b287a136"
+              - column:
+                  name: balance
+                  value: "1452000"
