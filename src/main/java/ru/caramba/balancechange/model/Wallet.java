@@ -18,4 +18,8 @@ public class Wallet {
     @Id
     private UUID id;
     private volatile long balance;
+
+    public synchronized void setBalance(long balance) {
+        this.balance = balance;
+    }
 }

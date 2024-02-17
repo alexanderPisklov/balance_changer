@@ -1,11 +1,13 @@
 package ru.caramba.balancechange.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.caramba.balancechange.DTO.BalanceChanger;
 import ru.caramba.balancechange.DTO.OperationType;
 import ru.caramba.balancechange.Services.WalletService;
-import ru.caramba.balancechange.exceptions.IncorrectOperationException;
+import ru.caramba.balancechange.exceptions.IncomeJsonValidationException;
 import ru.caramba.balancechange.model.Wallet;
 
 import java.util.UUID;
@@ -18,14 +20,15 @@ public class BalanceController {
     public static final String BAL_CONTROLLER_URL = "api/v1";
     private final WalletService walletService;
 
-    @PatchMapping("/wallet")
-    public void changeBalance(@RequestBody BalanceChanger changer) {
+    @PostMapping("/wallet")
+    public void changeBalance(@RequestBody @Validated BalanceChanger changer, BindingResult errors) {
+        if (errors.hasErrors()) {
+            throw new IncomeJsonValidationException();
+        }
         if (changer.getOperationType() == OperationType.DEPOSIT) {
             walletService.deposit(changer);
         } else if (changer.getOperationType() == OperationType.WITHDRAW) {
             walletService.withdraw(changer);
-        } else {
-            throw new IncorrectOperationException();
         }
     }
 

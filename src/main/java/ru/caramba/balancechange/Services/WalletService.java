@@ -20,7 +20,7 @@ public class WalletService {
     private final WalletRepository walletRepository;
 
     @Transactional
-    public void deposit(BalanceChanger changer) {
+    public synchronized void deposit(BalanceChanger changer) {
         Wallet wallet = getWallet(changer.getWalletId());
         long newBalance = wallet.getBalance() + changer.getAmount();
         wallet.setBalance(newBalance);
