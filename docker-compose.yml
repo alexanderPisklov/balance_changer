@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  pgserver:
+    container_name: pgserver
+    image: postgres
+    networks:
+      - network-1
+    ports:
+      - "5555:5432"
+    volumes:
+      - c:\tmp\balance-change\data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: balance-changer
+      POSTGRES_PASSWORD: postgres
+  balance-change:
+    container_name: balance-change-cont
+    #build: ./
+    image: balance-change
+    networks:
+      - network-1
+    ports:
+      - "8080:8080"
+    depends_on:
+      pgserver:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgserver:5432/balance-changer
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+networks:
+  network-1:
