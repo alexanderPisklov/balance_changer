@@ -4,20 +4,20 @@ import lombok.AllArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.caramba.balancechange.DTO.BalanceChanger;
-import ru.caramba.balancechange.DTO.OperationType;
-import ru.caramba.balancechange.Services.WalletService;
+import ru.caramba.balancechange.dto.BalanceChanger;
+import ru.caramba.balancechange.dto.OperationType;
+import ru.caramba.balancechange.services.WalletService;
 import ru.caramba.balancechange.exceptions.IncomeJsonValidationException;
 import ru.caramba.balancechange.model.Wallet;
 
 import java.util.UUID;
 
 @RestController()
-@RequestMapping(value = BalanceController.BAL_CONTROLLER_URL)
+@RequestMapping(value = BalanceController.BALANCE_CONTROLLER_URL)
 @AllArgsConstructor
 public class BalanceController {
 
-    public static final String BAL_CONTROLLER_URL = "api/v1";
+    public static final String BALANCE_CONTROLLER_URL = "/api/v1";
     private final WalletService walletService;
 
     @PostMapping("/wallet")

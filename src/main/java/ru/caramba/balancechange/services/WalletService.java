@@ -1,9 +1,9 @@
-package ru.caramba.balancechange.Services;
+package ru.caramba.balancechange.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.caramba.balancechange.DTO.BalanceChanger;
+import ru.caramba.balancechange.dto.BalanceChanger;
 import ru.caramba.balancechange.exceptions.InsufficientBalanceException;
 import ru.caramba.balancechange.exceptions.WalletNotFoundException;
 import ru.caramba.balancechange.model.Wallet;

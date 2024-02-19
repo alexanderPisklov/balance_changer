@@ -1,4 +1,4 @@
-package ru.caramba.balancechange.DTO;
+package ru.caramba.balancechange.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

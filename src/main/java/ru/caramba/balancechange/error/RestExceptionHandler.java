@@ -1,4 +1,4 @@
-package ru.caramba.balancechange.config;
+package ru.caramba.balancechange.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
